@@ -1,15 +1,27 @@
-import Link from 'next/link'
+import Axios from 'axios';
 import Layout from '../components/Layout'
+import { Offer } from '../types';
+import getOffers from '../utils/getOffers';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+type Props = {
+  data: Offer[];
+};
+
+const IndexPage = () => {
+  return (
+    <Layout title="Yo!">
+      MAP
+    </Layout>
+  );
+};
+
+export const getServerSideProps = async () => {
+  const data = await getOffers();
+  return {
+    props: {
+      data,
+    },
+  };
+};
 
 export default IndexPage
